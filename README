@@ -1,0 +1,6 @@
+Greg's personal unix configrations.
+
+I'm planning on making all my portable unix configs portable through this repo.
+
+Note: I doubt anyone will, but be careful about running the setup.sh scripts. They WILL overwrite $HOME profiles
+like ~/.bash_profile, ~/.bashrc, and lots of other files beginning with a period.
