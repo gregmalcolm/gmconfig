@@ -23,28 +23,66 @@ if [ ! "$1" == "force" ]; then
   exit 0
 fi
 
+backup()
+{
+  file="$1"
+  backup_file="$file~"
+
+  if [ -e ~/$file -a ! -e ~/$backup_file ]; then
+    echo "* Backing up ~/$file as ~/$backup_file"
+    cp -a ~/$file ~/$backup_file
+  fi
+}
+
+copy_file()
+{
+  file="$1"
+
+  backup $file
+  
+  echo "* Creating new '~/$file'"
+  cp $config_path/file_drops/$file ~/$file 
+}
+
+full_link()
+{
+  source_path="$1"
+  target_link="$2"
+
+  backup $target_link
+
+  echo "* Creating ~/$target_link symlink"
+  if [ -e ~/$target_link ]; then
+    rm ~/$target_link
+  fi
+  ln -s $config_path/$source_path ~/$target_link
+}
+
+link_to_config()
+{
+  file="$1"
+
+  full_link $file $file  
+}
+
+###############################################
+
+echo
+echo "Setting up unix configurations..."
+echo
 
 rel_path=`dirname $0`
 config_path="$PWD/$rel_path"
 
-echo "Creating ~/config symlink..."
-if [ -e ~/config ]; then
-  rm ~/config
-fi
-ln -s $config_path ~/config
+full_link . config
 
-if [ -e ~/.bash_profile -a ! -e ~/.bash_profile~ ]; then
-  echo "Backing up ~/.bash_profile as ~/.bash_profile~"
-  cp ~/.bash_profile ~/.bash_profile~
-fi
-echo "Creating new '~/.bash_profile'"
-cp $config_path/file_drops/.bash_profile ~/.bash_profile 
+echo
 
-if [ -e ~/.bashrc -a ! -e ~/.bashrc~ ]; then
-  echo "Backing up ~/.bashrc as ~/.bashrc~"
-  cp ~/.bashrc ~/.bashrc~
-fi
-echo "Creating new '~/.bashrc'"
-cp $config_path/file_drops/.bashrc ~/.bashrc 
+copy_file .bash_profile
+copy_file .bashrc
+
+echo
+
+link_to_config .irbrc
 
 chmod 744 $config_path/scripts
