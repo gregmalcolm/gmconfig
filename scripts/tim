@@ -1,0 +1,18 @@
+#!/bin/bash
+
+#tim - touch and MacVim a file
+
+#Create a file to edit in macvim
+if [ "$1" ]; then
+  touch $1
+fi
+
+open -a MacVim $1
+
+sleep 1
+
+# Now get rid of it it again if the file size is zero.
+# It will be created again from MacVim if we edit and save later.
+if [ -e "$1" -a ! -s "$1" ]; then
+  rm $1
+fi
