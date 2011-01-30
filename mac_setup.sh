@@ -41,7 +41,7 @@ copy_file()
   backup $file
   
   echo "* Creating new '~/$file'"
-  cp $config_path/file_drops/$file ~/$file 
+  cp $config_path/$file ~/$file 
 }
 
 full_link()
@@ -74,9 +74,10 @@ echo
 rel_path=`dirname $0`
 config_path="$PWD/$rel_path"
 
-full_link . config
 
-echo
+if [ "$config_path" != "$HOME/config/." ]; then
+  full_link . config
+fi
 
 copy_file .bash_profile
 copy_file .bashrc
