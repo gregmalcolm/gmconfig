@@ -84,5 +84,6 @@ copy_file .bashrc
 echo
 
 link_to_config .irbrc
+link_to_config .gitconfig
 
 chmod 744 $config_path/scripts
