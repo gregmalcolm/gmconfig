@@ -16,8 +16,11 @@ alias mvim='gvim'
 alias v='gvim'
 alias grep='egrep --color'
 alias igrep='grep -i'
+alias ig='irgrep'
 alias rgrep='grep -r'
+alias rg='rgrep'
 alias irgrep='grep -ir'
+alias 'irg'='irgrep'
 
 alias gs='git status'
 alias gb='git branch'
@@ -26,6 +29,7 @@ alias gc='git commit -am'
 alias gr='git reset --hard HEAD'
 alias gl='git log'
 alias gd='git diff'
+
 alias mysql=/usr/local/mysql/bin/mysql
 alias mysqladmin=/usr/local/mysql/bin/mysqladmin
 

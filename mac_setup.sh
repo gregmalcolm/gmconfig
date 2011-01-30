@@ -81,6 +81,7 @@ fi
 
 copy_file .bash_profile
 copy_file .bashrc
+touch ~/.local_profile
 
 echo
 
