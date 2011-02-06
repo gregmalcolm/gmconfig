@@ -87,5 +87,6 @@ echo
 
 link_to_config .irbrc
 link_to_config .gitconfig
+link_to_config .hgrc
 
 chmod 744 $config_path/scripts
