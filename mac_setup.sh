@@ -71,9 +71,8 @@ echo
 echo "Setting up unix configurations..."
 echo
 
-rel_path=`dirname $0`
-config_path="$PWD/$rel_path"
-
+. get_script_path.sh
+config_path=$script_path
 
 if [ "$config_path" != "$HOME/config/." ]; then
   full_link . config

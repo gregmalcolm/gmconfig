@@ -6,7 +6,7 @@ export HISTTIMEFORMAT="%D %T "
 export HISTIGNORE="&:ls:exit"
 shopt -s histappend
 
-export PATH="${PATH}:~/config/scripts"
+export PATH="${PATH}:~/config/scripts:/usr/local/share/npm/bin"
 
 #. ~/.bashrc
 alias a='alias'
